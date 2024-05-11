@@ -927,9 +927,12 @@ namespace Barotrauma
 
         public bool SectionIsLeakingFromOutside(int sectionIndex)
         {
-            if (sectionIndex < 0 || sectionIndex >= Sections.Length) { return false; }
+            if (Sections == null || sectionIndex < 0 || sectionIndex >= Sections.Length) { return false; }
+            if (Sections[sectionIndex] == null || Sections[sectionIndex].gap == null) { return false; }
+
             return SectionIsLeaking(sectionIndex) && !Sections[sectionIndex].gap.IsRoomToRoom;
         }
+
 
         public int SectionLength(int sectionIndex)
         {
